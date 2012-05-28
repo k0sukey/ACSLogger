@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>ACS Logger</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<!-- Le styles -->
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<style>
+body {
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+.console {
+	height: 480px;
+	overflow: auto;
+}
+#reload-all,
+#reload-debug,
+#reload-info,
+#reload-warn,
+#reload-error {
+	color: #08c;
+	cursor: pointer;
+}
+		</style>
+		<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+<body>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">ACS Logger</a>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<ul class="nav nav-tabs" id="consoleTab">
+		<li class="active"><a href="#settings" data-toggle="tab">APP Settings</a></li>
+		<li><a href="#all" data-toggle="tab">ALL</a></li>
+		<li><a href="#debug" data-toggle="tab">DEBUG</a></li>
+		<li><a href="#info" data-toggle="tab">INFO</a></li>
+		<li><a href="#warn" data-toggle="tab">WARN</a></li>
+		<li><a href="#error" data-toggle="tab">ERROR</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="settings">
+			<div class="row">
+				<div class="span12">
+					<form id="app-settings" class="well form-inline">
+						<input type="text" id="app-setting-appkey" placeholder="APP KEY" />
+						<input type="text" id="app-setting-username" placeholder="USERNAME" />
+						<input type="password" id="app-setting-password" placeholder="PASSWORD" />
+						<button type="button" id="app-setting-submit" class="btn">Sign in</button>
+						<input type="text" id="app-setting-classname" class="input-small" placeholder="CLASSNAME" value="logs" />
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<h2>What is this</h2>
+					<p>If you want to take the actual log in, it forwards the log to the ACS.
+						Ti.API.debug/info/warn/error replace.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<h2>How to use</h2>
+					<pre>var logging = require('CloudLog').CloudLog({
+	username: '&lt;LOGGER USERNAME&gt;',
+	password: '&lt;LOGGER USER PASSWORD&gt;',
+	classname: 'logs' // Custom Objects classname. optional, default 'logs'
+});
+
+logging.debug({ message: 'This is debug level message' });
+logging.info({ message: 'This is info level message' });
+logging.warn({ message: 'This is warn level message' });
+logging.error({ message: 'This is error level message' });</pre>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="all">
+			<div class="row">
+				<div class="span12 console">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th width="160">Timestamp</th>
+								<th width="30">Level</th>
+								<th>Message</th>
+								<th id="reload-all" width="40">Reload</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="debug">
+			<div class="row">
+				<div class="span12 console">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th width="160">Timestamp</th>
+								<th>Message</th>
+								<th id="reload-debug" width="40">Reload</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="info">
+			<div class="row">
+				<div class="span12 console">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th width="160">Timestamp</th>
+								<th>Message</th>
+								<th id="reload-info" width="40">Reload</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="warn">
+			<div class="row">
+				<div class="span12 console">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th width="160">Timestamp</th>
+								<th>Message</th>
+								<th id="reload-warn" width="40">Reload</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="error">
+			<div class="row">
+				<div class="span12 console">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th width="160">Timestamp</th>
+								<th>Message</th>
+								<th id="reload-error" width="40">Reload</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- /container -->
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script src="/js/bootstrap-tab.js"></script>
+<script src="/js/cocoafish-1.2.min.js"></script>
+<script src="/js/acslogger.js"></script>
+</body>
+</html>
