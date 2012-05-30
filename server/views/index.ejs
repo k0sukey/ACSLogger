@@ -27,6 +27,7 @@ body {
 }
 		</style>
 		<link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="/css/prettify.css" rel="stylesheet">
 
 		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -56,37 +57,51 @@ body {
 				<div class="span12">
 					<form id="app-settings" class="well form-inline">
 						<input type="text" id="app-setting-appkey" placeholder="APP KEY" />
-						<input type="text" id="app-setting-username" placeholder="USERNAME" />
-						<input type="password" id="app-setting-password" placeholder="PASSWORD" />
-						<button type="button" id="app-setting-submit" class="btn">Sign in</button>
 						<input type="text" id="app-setting-classname" class="input-small" placeholder="CLASSNAME" value="logs" />
+						<button type="button" id="app-setting-submit" class="btn btn-primary">Check APP KEY</button>
 					</form>
 				</div>
 			</div>
 			<div class="row">
-				<div class="span12">
+				<div class="span6">
 					<h2>What is this</h2>
 					<p>If you want to take the actual log in, it forwards the log to the ACS.
 						Ti.API.debug/info/warn/error replace.</p>
+				</div>
+				<div class="span6">
+					<h2>Caution</h2>
+					<p>ONLY DEVELOPMENT!
+						Please do not use the product.
+						If your app using the ACS, Cloud.Users conflict in this library.</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="span12">
 					<h2>How to use</h2>
-					<pre>var logging = require('CloudLog').CloudLog({
-	username: '&lt;LOGGER USERNAME&gt;',
-	password: '&lt;LOGGER USER PASSWORD&gt;',
-	classname: 'logs' // Custom Objects classname. optional, default 'logs'
+					<pre class="prettyprint linenums">var logger = require('CloudLog').CloudLog({
+    username: '&lt;LOGGER USERNAME&gt;',
+    password: '&lt;LOGGER PASSWORD&gt;',
+    classname: 'logs' // Custom Objects classname. optional, default 'logs'
 });
 
-logging.debug({ message: 'This is debug level message' });
-logging.info({ message: 'This is info level message' });
-logging.warn({ message: 'This is warn level message' });
-logging.error({ message: 'This is error level message' });</pre>
+logger.debug({ message: 'This is debug level message' });
+logger.info({ message: 'This is info level message' });
+logger.warn({ message: 'This is warn level message' });
+logger.error({ message: 'This is error level message' });</pre>
 				</div>
 			</div>
 		</div>
 		<div class="tab-pane" id="all">
+			<div class="row">
+				<div class="span12">
+					<p class="pull-right">
+						<a id="refresh-all" class="btn btn-mini btn-primary" href="#">
+							<i class="icon-refresh icon-white"></i>
+							 Refresh
+						</a>
+					</p>
+				</div>
+			</div>
 			<div class="row">
 				<div class="span12 console">
 					<table class="table table-striped">
@@ -95,7 +110,6 @@ logging.error({ message: 'This is error level message' });</pre>
 								<th width="160">Timestamp</th>
 								<th width="30">Level</th>
 								<th>Message</th>
-								<th id="reload-all" width="40">Reload</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
@@ -105,13 +119,22 @@ logging.error({ message: 'This is error level message' });</pre>
 		</div>
 		<div class="tab-pane" id="debug">
 			<div class="row">
+				<div class="span12">
+					<p class="pull-right">
+						<a id="refresh-debug" class="btn btn-mini btn-primary" href="#">
+							<i class="icon-refresh icon-white"></i>
+							 Refresh
+						</a>
+					</p>
+				</div>
+			</div>
+			<div class="row">
 				<div class="span12 console">
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th width="160">Timestamp</th>
 								<th>Message</th>
-								<th id="reload-debug" width="40">Reload</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
@@ -121,13 +144,20 @@ logging.error({ message: 'This is error level message' });</pre>
 		</div>
 		<div class="tab-pane" id="info">
 			<div class="row">
+				<div class="span12">
+					<p class="pull-right">
+						<a id="refresh-info" class="btn btn-mini btn-primary" href="#">
+							<i class="icon-refresh icon-white"></i>
+							 Refresh
+						</a>
+					</p>
+				</div>
 				<div class="span12 console">
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th width="160">Timestamp</th>
 								<th>Message</th>
-								<th id="reload-info" width="40">Reload</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
@@ -137,13 +167,22 @@ logging.error({ message: 'This is error level message' });</pre>
 		</div>
 		<div class="tab-pane" id="warn">
 			<div class="row">
+				<div class="span12">
+					<p class="pull-right">
+						<a id="refresh-warn" class="btn btn-mini btn-primary" href="#">
+							<i class="icon-refresh icon-white"></i>
+							 Refresh
+						</a>
+					</p>
+				</div>
+			</div>
+			<div class="row">
 				<div class="span12 console">
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th width="160">Timestamp</th>
 								<th>Message</th>
-								<th id="reload-warn" width="40">Reload</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
@@ -153,13 +192,22 @@ logging.error({ message: 'This is error level message' });</pre>
 		</div>
 		<div class="tab-pane" id="error">
 			<div class="row">
+				<div class="span12">
+					<p class="pull-right">
+						<a id="refresh-error" class="btn btn-mini btn-primary" href="#">
+							<i class="icon-refresh icon-white"></i>
+							 Refresh
+						</a>
+					</p>
+				</div>
+			</div>
+			<div class="row">
 				<div class="span12 console">
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th width="160">Timestamp</th>
 								<th>Message</th>
-								<th id="reload-error" width="40">Reload</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
@@ -172,6 +220,7 @@ logging.error({ message: 'This is error level message' });</pre>
 <script src="/js/jquery-1.7.2.min.js"></script>
 <script src="/js/bootstrap-tab.js"></script>
 <script src="/js/cocoafish-1.2.min.js"></script>
+<script src="/js/prettify.js"></script>
 <script src="/js/acslogger.js"></script>
 </body>
 </html>
